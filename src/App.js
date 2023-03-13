@@ -1,62 +1,55 @@
 import {useState} from 'react';
 import './App.css';
+import Card from './Card';
 
 function App() {
-  let [color, setColor]= useState(false);
 
-const handleClick = () => {
-    setColor(!color)
+
+  const [data, setData ]= useState([{
+    id : 1,
+    title : "Basic",
+    price : "$19.99",
+    disk : "500 GB Storage",
+    users: "2 Users Allowed",
+    up : "Send up to 3 GB",
+    active : false,
+  },
+  {
+    id : 2,
+    title : "Professional",
+    price : "$24.99",
+    disk : "1 TB Storage",
+    users: "5 Users Allowed",
+    up : "Send up to 10 GB",
+    active : false,
+  },
+
+  {
+    id : 3,
+    title : "Master",
+    price : "$39.99",
+    disk : "2 TB Storage",
+    users: "10 Users Allowed",
+    up : "Send up to 20 GB",
+    active : false,
+  }
+
+]);
+
+const handleClick = (id) => {
+    let newData = [...data];
+    const indexOfMode = newData.findIndex(d => d.id === id);
+    newData.map(d => d.active = false);
+    newData[indexOfMode].active = !newData[indexOfMode].active;
+    setData(newData);
   }
   return (
-    <div className='root'>
-
-       <div className={color ? "container color" : "container"}>
-      <div className ='top'>
-        <div className='top-top'> Basic 
-        </div>
-        <div className='top-bottom'> <h1>$19.99</h1>
-        </div>
-      </div>
-      <div className='middle-first'> 500 GB Storage</div>
-      <div className='middle-second'>2 Users Allowed</div>
-      <div className='middle-third'>Send up to 3 GB</div>
-        <div className='bottom' onClick={handleClick}><h4>LEARN MORE</h4></div>
-      
-</div>
-
-
-
-      <div className={color ? 'container color' : 'container'}>
-      <div className ='top'>
-        <div className='top-top'> Professional 
-        </div>
-        <div className='top-bottom'> <h1>$24.99</h1>
-        </div>
-      </div>
-      <div className='middle-first'>1 TB Storage </div>
-      <div className='middle-second'> 5 Users Allowed</div>
-      <div className='middle-third'>Send up to 10 GB</div>
-      <div className='bottom' onClick={handleClick}> <h4>LEARN MORE</h4></div>
-      </div>
-
-
-
-
-      <div className={color ? "container color" : "container"}>
-      <div className ='top'>
-        <div className='top-top'> Master 
-        </div>
-        <div className='top-bottom'> <h1>$39.99</h1> 
-        </div>
-      </div>
-      <div className='middle-first'>2 TB Storage</div>
-      <div className='middle-second'>10 Users Allowed</div>
-      <div className='middle-third'>Send up to 20 GB</div>
-      <div className='bottom' onClick={handleClick}> <h4>LEARN MORE</h4></div>
+    <div className="root">
+        {data.map(d => {
+          return(<Card data={d} key={d.id} handleClick={handleClick}  />)
+        })
+        }
     </div>
-
-    </div>
-
-  )};
+  );};
 
 export default App;
