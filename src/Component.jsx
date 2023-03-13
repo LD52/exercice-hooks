@@ -1,16 +1,20 @@
-import {useState} from 'react';
 import './App.css';
+class Component extends 'react' {
 
-function App() {
-  let [color, setColor]= useState(false);
-
-const handleClick = () => {
-    setColor(!color)
+  state = {
+   color: false,
   }
-  return (
+
+ handleClick = () => {
+    this.setState({
+       color : !this.state.color
+    })
+  }
+  render () {
+    return (
     <div className='root'>
 
-       <div className={color ? "container color" : "container"}>
+       <div className={this.state.color ? "container color" : "container"}>
       <div className ='top'>
         <div className='top-top'> Basic 
         </div>
@@ -20,13 +24,11 @@ const handleClick = () => {
       <div className='middle-first'> 500 GB Storage</div>
       <div className='middle-second'>2 Users Allowed</div>
       <div className='middle-third'>Send up to 3 GB</div>
-        <div className='bottom' onClick={handleClick}><h4>LEARN MORE</h4></div>
+        <div className='bottom' onClick={this.handleClick}><h4>LEARN MORE</h4></div>
       
 </div>
 
-
-
-      <div className={color ? 'container color' : 'container'}>
+      <div className={color ? "container color" : "container"}>
       <div className ='top'>
         <div className='top-top'> Professional 
         </div>
@@ -36,11 +38,8 @@ const handleClick = () => {
       <div className='middle-first'>1 TB Storage </div>
       <div className='middle-second'> 5 Users Allowed</div>
       <div className='middle-third'>Send up to 10 GB</div>
-      <div className='bottom' onClick={handleClick}> <h4>LEARN MORE</h4></div>
+      <div className='bottom' onClick={this.handleClick}> <h4>LEARN MORE</h4></div>
       </div>
-
-
-
 
       <div className={color ? "container color" : "container"}>
       <div className ='top'>
@@ -52,11 +51,17 @@ const handleClick = () => {
       <div className='middle-first'>2 TB Storage</div>
       <div className='middle-second'>10 Users Allowed</div>
       <div className='middle-third'>Send up to 20 GB</div>
-      <div className='bottom' onClick={handleClick}> <h4>LEARN MORE</h4></div>
+      <div className='bottom' onClick={this.handleClick}> <h4>LEARN MORE</h4></div>
     </div>
+</div>
+    )
+  }
 
-    </div>
+}
 
-  )};
 
-export default App;
+  
+
+
+
+export default Component;
